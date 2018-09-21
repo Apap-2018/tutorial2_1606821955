@@ -14,7 +14,7 @@ public class PageController {
 	}
 	
 	@RequestMapping("/challenge")
-	public String challenge(@RequestParam(value = "name") String name, Model model) {
+	public String challenge(@RequestParam(value = "name", required = false, defaultValue = "kiki") String name, Model model) {
 		model.addAttribute("name",name);
 		return "challenge";
 	}

@@ -25,4 +25,33 @@ public class PageController {
 		model.addAttribute("name", name);
 		return "challenge";
 	}
+	
+	@RequestMapping("/generator")
+	public String generator(@RequestParam(value = "a", required = false, defaultValue = "0") String aValue,
+			@RequestParam(value = "b", required = false, defaultValue = "0") String bValue, Model model) {
+		int intAValue = Integer.parseInt(aValue);
+		int intBValue = Integer.parseInt(bValue);
+		
+		String res = "h";
+		
+		if (intAValue < 2) {
+			intAValue = 1;
+		} if (intBValue < 2) {
+			intBValue = 1;
+		}
+		
+		for (int i = 0; i < intAValue; i++) {
+			res += "m";
+		}
+		
+		String duplicateRes = res;
+		for (int i = 0; i < intBValue; i++) {
+			res += " " + duplicateRes;
+		}
+		
+		model.addAttribute("aValue", intAValue);
+		model.addAttribute("bValue", intBValue);
+		model.addAttribute("result", res);
+		return "generator";
+	}
 }

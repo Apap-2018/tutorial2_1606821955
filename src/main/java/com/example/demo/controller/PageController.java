@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,8 +15,14 @@ public class PageController {
 	}
 	
 	@RequestMapping("/challenge")
-	public String challenge(@RequestParam(value = "name", required = false, defaultValue = "kiki") String name, Model model) {
+	public String challenge(@RequestParam(value = "name") String name, Model model) {
 		model.addAttribute("name",name);
+		return "challenge";
+	}
+	
+	@RequestMapping("/challenge/{name}")
+	public String challengePath(@PathVariable String name, Model model) {
+		model.addAttribute("name", name);
 		return "challenge";
 	}
 }
